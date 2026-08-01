@@ -18,7 +18,7 @@ func _on_area_exited(area: Area2D):
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.pressed and !event.keycode == KEY_ESCAPE and overlapping.count(1) != 0:
+		if event.pressed and !event.keycode == KEY_ESCAPE and overlapping.size() != 0:
 			var _offset = overlapping[0].position.x - self.position.x
 			overlapping[0].queue_free()
 			overlapping.remove_at(0)
