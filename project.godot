@@ -12,8 +12,12 @@ config_version=5
 
 config/name="Project Dasher"
 run/main_scene="uid://vu7s0ml2dpkk"
-config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.7", "C#", "Forward Plus")
+config/icon="res://Sprites/icon.svg"
+
+[autoload]
+
+RatingManager="*uid://dgxc7kie2srr0"
 
 [display]
 
@@ -28,7 +32,7 @@ project/assembly_name="Project Dasher"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
+enabled=PackedStringArray()
 
 [physics]
 

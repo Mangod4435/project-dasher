@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkuuvk3g5e0pi"
-path="res://.godot/imported/PlaceHolder.png-1986b2bbf7b78133696812e8fdc250a4.ctex"
+uid="uid://c6ca137358r8"
+path="res://.godot/imported/icon.svg-b67cfb692a937e61d2bda8561d9e8db7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PlaceHolder.png"
-dest_files=["res://.godot/imported/PlaceHolder.png-1986b2bbf7b78133696812e8fdc250a4.ctex"]
+source_file="res://Sprites/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-b67cfb692a937e61d2bda8561d9e8db7.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
