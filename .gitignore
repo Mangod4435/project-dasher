@@ -5,3 +5,4 @@
 # App specific ignores
 .vscode/*
 .idea/*
+.DS_Store
