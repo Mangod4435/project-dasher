@@ -1,6 +1,6 @@
 extends Node2D
 
-const SPEED = 300.0
+const SPEED = 7.5
 
 func _physics_process(delta: float) -> void:
-	position.x -= SPEED * delta
+	position.x -= SPEED 
