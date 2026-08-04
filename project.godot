@@ -26,6 +26,10 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[dotnet]
+
+project/assembly_name="Project Dasher"
+
 [editor_plugins]
 
 enabled=PackedStringArray()
@@ -38,3 +42,4 @@ common/physics_ticks_per_second=100
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
