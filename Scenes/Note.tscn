@@ -10,6 +10,7 @@ radius = 50.0
 
 [node name="Area2D2" type="Area2D" parent="." unique_id=643193052 groups=["Notes"]]
 script = ExtResource("1_pmjlu")
+metadata/Type = 0
 
 [node name="Pipis" type="Sprite2D" parent="Area2D2" unique_id=827244956]
 scale = Vector2(0.25, 0.25)
