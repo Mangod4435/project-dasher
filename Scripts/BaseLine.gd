@@ -17,9 +17,8 @@ func _on_area_exited(area: Area2D):
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and overlapping.size() != 0:
 		if !event.keycode == KEY_ESCAPE:
-			var offset = abs(overlapping[0].global_position.x - global_position.x)
+			var offset = abs(overlapping[0].global_position.x - position.x)
 			var score = abs(50 - offset)
 			overlapping[0].queue_free()
 			overlapping.remove_at(0)
 			ScoreManager.currentScore += score
-			print("HIT")
