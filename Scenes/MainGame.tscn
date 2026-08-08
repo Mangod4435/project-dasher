@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://207o8uwi2bdt" path="res://Scripts/ScoreDisplay.gd" id="2_321ql"]
 [ext_resource type="Texture2D" uid="uid://bkuuvk3g5e0pi" path="res://Sprites/PlaceHolder.png" id="3_d4f28"]
 [ext_resource type="Script" uid="uid://dlo0i6njka7hf" path="res://Scripts/BaseLine.gd" id="4_iuea6"]
+[ext_resource type="AudioStream" uid="uid://cfe8gyk83oaiy" path="res://Music/BIG-SHOT-DELTARUNE.mp3" id="5_321ql"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8f2k4"]
 font_size = 29
@@ -53,3 +54,7 @@ points = PackedVector2Array(0, 0, 0, 720)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseLine" unique_id=786785848]
 position = Vector2(0, 360)
 shape = SubResource("RectangleShape2D_8f2k4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1922572564]
+stream = ExtResource("5_321ql")
+volume_db = -20.0
