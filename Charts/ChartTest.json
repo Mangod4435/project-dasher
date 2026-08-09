@@ -1,7 +1,7 @@
 {
 	"name": "placeholder",
 	"music": "res://Music/BIG-SHOT-DELTARUNE.mp3",
-	"delay": 0,
+	"delay": 1.83,
 	"notes":[
 		{"x": 0, "y": 1, "t": 0},
 		{"x": 0, "y": 2, "t": 0}
