@@ -60,4 +60,3 @@ shape = SubResource("RectangleShape2D_8f2k4")
 stream = ExtResource("5_321ql")
 volume_db = -7.0
 script = ExtResource("6_d4f28")
-isEnable = true
