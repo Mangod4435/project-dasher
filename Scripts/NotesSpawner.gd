@@ -36,7 +36,10 @@ func _ready() -> void:
 					# set the tail size
 					var _tail = templ.get_node("Hold/Tail") as Node2D
 					_tail.scale.x = one_beat * note.end * 0.25
-					_tail.position.x = 400 * _tail.scale.x / 2 
+					_tail.position.x = 200 * _tail.scale.x 
+
+					var _end = templ.get_node("Hold/End") as Node2D
+					_end.position.x = 400 * _tail.scale.x
 
 					templ.set_meta("Type", "Hold") # set meta
 

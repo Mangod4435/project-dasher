@@ -7,6 +7,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewwnu"]
 radius = 50.0
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8f2k4"]
+a = Vector2(0, -50)
+b = Vector2(0, 50)
+
 [node name="Note" type="Node2D" unique_id=168282476]
 script = ExtResource("1_pmjlu")
 metadata/Type = ""
@@ -24,6 +28,12 @@ shape = SubResource("CircleShape2D_ewwnu")
 
 [node name="Hold" type="Node2D" parent="." unique_id=647835917]
 position = Vector2(0, 50)
+
+[node name="End" type="Area2D" parent="Hold" unique_id=877300022]
+position = Vector2(200, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hold/End" unique_id=1929787691]
+shape = SubResource("SegmentShape2D_8f2k4")
 
 [node name="Tail" type="Sprite2D" parent="Hold" unique_id=182438650]
 position = Vector2(100, 0)
