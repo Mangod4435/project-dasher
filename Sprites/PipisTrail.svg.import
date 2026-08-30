@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rinwd2i4q3nx"
-path="res://.godot/imported/Pipis.svg-e93b185b7271c793a180b0ca92d486a6.ctex"
+uid="uid://cfqs8h26gtp4m"
+path="res://.godot/imported/PipisTrail.svg-cc8a475139f9e6875054ddca51ef287c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Pipis.svg"
-dest_files=["res://.godot/imported/Pipis.svg-e93b185b7271c793a180b0ca92d486a6.ctex"]
+source_file="res://Sprites/PipisTrail.svg"
+dest_files=["res://.godot/imported/PipisTrail.svg-cc8a475139f9e6875054ddca51ef287c.ctex"]
 
 [params]
 

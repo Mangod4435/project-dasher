@@ -1,21 +1,40 @@
 [gd_scene format=3 uid="uid://8ro223xx7im2"]
 
 [ext_resource type="Script" uid="uid://c2if748f7bloa" path="res://Scripts/Note.gd" id="1_pmjlu"]
-[ext_resource type="Texture2D" uid="uid://d16gov3dw46qs" path="res://Sprites/pipis.svg" id="2_6st8q"]
+[ext_resource type="Texture2D" uid="uid://rinwd2i4q3nx" path="res://Sprites/Pipis.svg" id="2_6st8q"]
+[ext_resource type="Texture2D" uid="uid://cfqs8h26gtp4m" path="res://Sprites/PipisTrail.svg" id="3_6a4ne"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewwnu"]
 radius = 50.0
 
 [node name="Note" type="Node2D" unique_id=168282476]
 script = ExtResource("1_pmjlu")
+metadata/Type = ""
 
-[node name="Area2D2" type="Area2D" parent="." unique_id=643193052 groups=["Notes"]]
+[node name="Tap" type="Area2D" parent="." unique_id=643193052 groups=["Notes"]]
+position = Vector2(0, -50)
 metadata/Type = 0
 
-[node name="Pipis" type="Sprite2D" parent="Area2D2" unique_id=827244956]
+[node name="Pipis" type="Sprite2D" parent="Tap" unique_id=827244956]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_6st8q")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=1828127259]
-scale = Vector2(1, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tap" unique_id=1828127259]
+shape = SubResource("CircleShape2D_ewwnu")
+
+[node name="Hold" type="Node2D" parent="." unique_id=647835917]
+position = Vector2(0, 50)
+
+[node name="Tail" type="Sprite2D" parent="Hold" unique_id=182438650]
+position = Vector2(100, 0)
+scale = Vector2(0.5, 0.25)
+texture = ExtResource("3_6a4ne")
+
+[node name="Head" type="Area2D" parent="Hold" unique_id=1085827548 groups=["Notes"]]
+
+[node name="Pipis" type="Sprite2D" parent="Hold/Head" unique_id=1566794696]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_6st8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hold/Head" unique_id=18230596]
 shape = SubResource("CircleShape2D_ewwnu")
