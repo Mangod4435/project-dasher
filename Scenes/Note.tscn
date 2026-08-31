@@ -11,6 +11,9 @@ radius = 50.0
 a = Vector2(0, -50)
 b = Vector2(0, 50)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_3arqs"]
+b = Vector2(200, 0)
+
 [node name="Note" type="Node2D" unique_id=168282476]
 script = ExtResource("1_pmjlu")
 metadata/Type = ""
@@ -29,16 +32,22 @@ shape = SubResource("CircleShape2D_ewwnu")
 [node name="Hold" type="Node2D" parent="." unique_id=647835917]
 position = Vector2(0, 50)
 
-[node name="End" type="Area2D" parent="Hold" unique_id=877300022]
+[node name="End" type="Area2D" parent="Hold" unique_id=877300022 groups=["Notes"]]
 position = Vector2(200, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hold/End" unique_id=1929787691]
 shape = SubResource("SegmentShape2D_8f2k4")
 
-[node name="Tail" type="Sprite2D" parent="Hold" unique_id=182438650]
+[node name="Tail" type="Area2D" parent="Hold" unique_id=1523418433]
 position = Vector2(100, 0)
+
+[node name="Tail" type="Sprite2D" parent="Hold/Tail" unique_id=182438650]
 scale = Vector2(0.5, 0.25)
 texture = ExtResource("3_6a4ne")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hold/Tail" unique_id=873971616]
+position = Vector2(-100, 0)
+shape = SubResource("SegmentShape2D_3arqs")
 
 [node name="Head" type="Area2D" parent="Hold" unique_id=1085827548 groups=["Notes"]]
 
