@@ -26,7 +26,7 @@ metadata/Type = 0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_6st8q")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tap" unique_id=1828127259]
+[node name="TapCollision" type="CollisionShape2D" parent="Tap" unique_id=1828127259]
 shape = SubResource("CircleShape2D_ewwnu")
 
 [node name="Hold" type="Node2D" parent="." unique_id=647835917]
@@ -35,7 +35,7 @@ position = Vector2(0, 50)
 [node name="End" type="Area2D" parent="Hold" unique_id=877300022 groups=["Notes"]]
 position = Vector2(200, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hold/End" unique_id=1929787691]
+[node name="EndCollision" type="CollisionShape2D" parent="Hold/End" unique_id=1929787691]
 shape = SubResource("SegmentShape2D_8f2k4")
 
 [node name="Tail" type="Area2D" parent="Hold" unique_id=1523418433]
@@ -45,7 +45,7 @@ position = Vector2(100, 0)
 scale = Vector2(0.5, 0.25)
 texture = ExtResource("3_6a4ne")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hold/Tail" unique_id=873971616]
+[node name="TailCollision" type="CollisionShape2D" parent="Hold/Tail" unique_id=873971616]
 position = Vector2(-100, 0)
 shape = SubResource("SegmentShape2D_3arqs")
 
@@ -55,5 +55,5 @@ shape = SubResource("SegmentShape2D_3arqs")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_6st8q")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hold/Head" unique_id=18230596]
+[node name="HeadCollision" type="CollisionShape2D" parent="Hold/Head" unique_id=18230596]
 shape = SubResource("CircleShape2D_ewwnu")
