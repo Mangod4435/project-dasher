@@ -10,8 +10,8 @@
 [sub_resource type="LabelSettings" id="LabelSettings_8f2k4"]
 font_size = 29
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8f2k4"]
-size = Vector2(10, 720)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6a4ne"]
+b = Vector2(0, 10000)
 
 [node name="GameScene" type="Node2D" unique_id=1483752767]
 
@@ -49,11 +49,10 @@ position = Vector2(250, 0)
 script = ExtResource("4_iuea6")
 
 [node name="Line2D" type="Line2D" parent="BaseLine" unique_id=1358210787]
-points = PackedVector2Array(0, 0, 0, 720)
+points = PackedVector2Array(0, 0, 0, 10000)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseLine" unique_id=786785848]
-position = Vector2(0, 360)
-shape = SubResource("RectangleShape2D_8f2k4")
+shape = SubResource("SegmentShape2D_6a4ne")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1922572564]
 stream = ExtResource("5_321ql")
