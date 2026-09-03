@@ -24,27 +24,23 @@ func _ready() -> void:
 					var _hold = templ.get_node("Hold") as Node2D
 					_hold.position = Vector2.ZERO
 
-					templ.set_meta("Type", "Tap")# set meta
-					
 				else: # Hold Note
 					free_other_child(templ, "Hold") # free everything except Hold node
 
 					# Set the position of hold to be center
-					var _tap = templ.get_node("Tap") as Node2D 
+					var _tap = templ.get_node("Tap") as Node2D
 					_tap.position = Vector2.ZERO
 
 					# set the tail size
 					var _tail = templ.get_node("Hold/Tail") as Node2D
-					_tail.scale.x = one_beat * note.end
-					_tail.position.x = 200 * _tail.scale.x 
+					_tail.scale.x = one_beat * note.end / 4
+					_tail.position.x = _tail.scale.x / 4
+
+					var _tail_coll = templ.get_node("Hold/Tail/TailCollision") as CollisionShape2D
+					_tail_coll.shape.b.x = 400 * _tail.get_node("Tail").scale.x
 
 					var _end = templ.get_node("Hold/End") as Node2D
 					_end.position.x = 400 * _tail.scale.x
-					
-					var _tail_coll = templ.get_node("Hold/Tail/TailCollision") as CollisionShape2D
-					_tail_coll.shape.b.x = 400 * _tail.scale.x
-
-					templ.set_meta("Type", "Hold") # set meta
 
 		var output_pos = Vector2(one_beat * note["beat"] * 100, 0) # matching y postion
 		match int(note["y"]):
