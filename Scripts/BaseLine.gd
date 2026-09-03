@@ -27,6 +27,6 @@ func _input(event: InputEvent) -> void:
 			if offset > -200 * overlapping[0].scale.x:
 				overlapping[0].queue_free()
 				ScoreManager.currentScore -= 50
-		elif (event.is_pressed() and event.is_echo()) or event.is_released() and overlapping[0].get_meta("Type") == "End":
-			var _offset = overlapping[0].global_position.x - position.x
+		elif event.is_pressed() or event.is_released() and overlapping[0].get_meta("Type") == "End":
+			ScoreManager.currentScore += 50
 			
