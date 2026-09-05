@@ -32,7 +32,7 @@ project/assembly_name="Project Dasher"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/GlobalPosition2DGS/plugin.cfg")
 
 [physics]
 
