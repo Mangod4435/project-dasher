@@ -36,18 +36,18 @@ func _setup_hold(templ: Node2D, end_beats: float, id: int) -> void:
 	_hold.position = Vector2.ZERO
 
 	var _tail_are = _hold.get_node("Tail") as Node2D
-	var _tail_spr = _tail_are.get_node("Tail") as Node2D
-	var _tail_col = _tail_are.get_node("TailCollision") as CollisionShape2D
+	var _tail_spr = _hold.get_node("Tail/Tail") as Node2D
+	var _tail_col = _hold.get_node("Tail/TailCollision") as CollisionShape2D
 	var _end = _hold.get_node("End") as Node2D
 
-	var length_px = one_beat * end_beats * 100  # match the same beat->pixel scale used for output_pos
+	var length_px = one_beat * end_beats * 100
 
-	_tail_are.position.x = 0 # Tail node itself stays put; sprite/collision scale from here
-	_tail_col.position.x = 0
-	_tail_spr.position.x = length_px / 2 # sprite pivots at its own center, so shift it half its length
-	_tail_spr.scale.x = length_px / 400 # base texture width is 400px
-	_tail_col.shape.b.x = length_px # collision segment spans 0 -> length_px directly
-	_end.position.x = length_px # End marker sits exactly at the tail's tip
+	_tail_are.position.x = length_px # anchor the whole Tail node at the tip, same as End
+	_tail_spr.position.x = -length_px / 2
+	_tail_spr.scale.x = length_px / 400
+	_tail_col.position.x = -length_px
+	_tail_col.shape.b.x = length_px
+	_end.position.x = length_px
 
 # private helpers
 func free_other_child(parent: Node, except: String):
