@@ -39,15 +39,17 @@ metadata/Type = "End"
 shape = SubResource("RectangleShape2D_hg3a3")
 
 [node name="Tail" type="Area2D" parent="Hold" unique_id=1523418433]
+position = Vector2(400, 0)
 script = ExtResource("1_pmjlu")
 metadata/Type = "Tail"
 
 [node name="Tail" type="Sprite2D" parent="Hold/Tail" unique_id=182438650]
-position = Vector2(200, 0)
+position = Vector2(-200, 0)
 scale = Vector2(1, 0.25)
 texture = ExtResource("3_6a4ne")
 
 [node name="TailCollision" type="CollisionShape2D" parent="Hold/Tail" unique_id=873971616]
+position = Vector2(-400, 0)
 shape = SubResource("SegmentShape2D_3arqs")
 
 [node name="Head" type="Area2D" parent="Hold" unique_id=1085827548 groups=["Notes"]]
