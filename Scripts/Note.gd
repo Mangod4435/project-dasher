@@ -16,5 +16,5 @@ func _on_note_touch():
 	print("Note touched baseline!!!!!!!!!!!!")
 
 func _on_area_enter(area: Area2D):
-	if area.get_script().resource_name == "BaseLine.gd":
+	if area.is_in_group("BaseLine"):
 		on_note_touch_baseline.emit()

@@ -44,7 +44,7 @@ position = Vector2(122, 360)
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("3_d4f28")
 
-[node name="BaseLine" type="Area2D" parent="." unique_id=162827056]
+[node name="BaseLine" type="Area2D" parent="." unique_id=162827056 groups=["BaseLine"]]
 position = Vector2(250, 0)
 script = ExtResource("4_iuea6")
 
