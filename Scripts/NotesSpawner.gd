@@ -43,9 +43,9 @@ func _setup_hold(templ: Node2D, end_beats: float, id: int) -> void:
 	var length_px = one_beat * end_beats * 100
 
 	_tail_are.position.x = length_px # anchor the whole Tail node at the tip, same as End
-	_tail_spr.position.x = -length_px / 2
+	_tail_spr.position.x = - length_px / 2
 	_tail_spr.scale.x = length_px / 400
-	_tail_col.position.x = -length_px
+	_tail_col.position.x = - length_px
 	_tail_col.shape.b.x = length_px
 	_end.position.x = length_px
 
