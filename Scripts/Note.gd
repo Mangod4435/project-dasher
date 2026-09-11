@@ -19,18 +19,18 @@ func _physics_process(_delta: float) -> void:
 	position.x -= SPEED
 
 func _on_note_touch():
-		if inp_event is InputEventKey and inp_event.is_pressed():
-			if !inp_event.keycode == KEY_ESCAPE and !inp_event.is_echo() and self.get_meta("Type") == "Tap": # tap note and head
-				var offset = abs(self.global_position.x - BaseLine_x_pos)
+		if inp_event is InputEventKey and inp_event.keycode != KEY_ESCAPE:
+			if !inp_event.is_echo() and get_meta("Type") == "Tap":
+				var offset = abs(global_position.x - BaseLine_x_pos)
 				var score = abs(100 - offset)
 				queue_free()
 				ScoreManager.currentScore += score
-			elif inp_event.is_released() and self.get_meta("Type") == "Tail":
+			elif inp_event.is_released() and get_meta("Type") == "Tail":
 				var offset = global_position.x - BaseLine_x_pos * 2
 				if offset > -200 * scale.x:
 					queue_free()
 					ScoreManager.currentScore -= 100
-			elif inp_event.is_pressed() or inp_event.is_released() and get_meta("Type") == "End":
+			elif (inp_event.is_pressed() or inp_event.is_released()) and get_meta("Type") == "End":
 				ScoreManager.currentScore += 100
 
 func _on_area_enter(area: Area2D):
