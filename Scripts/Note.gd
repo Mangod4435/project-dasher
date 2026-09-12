@@ -19,19 +19,18 @@ func _physics_process(_delta: float) -> void:
 	position.x -= SPEED
 
 func _on_note_touch():
-		if inp_event is InputEventKey and inp_event.keycode != KEY_ESCAPE:
-			if !inp_event.is_echo() and get_meta("Type") == "Tap":
-				var offset = abs(global_position.x - BaseLine_x_pos)
-				var score = abs(100 - offset)
-				queue_free()
-				ScoreManager.currentScore += score
-			elif inp_event.is_released() and get_meta("Type") == "Tail":
-				var offset = global_position.x - BaseLine_x_pos * 2
-				if offset > -200 * scale.x:
-					queue_free()
-					ScoreManager.currentScore -= 100
-			elif (inp_event.is_pressed() or inp_event.is_released()) and get_meta("Type") == "End":
-				ScoreManager.currentScore += 100
+	if inp_event is InputEventKey:
+		var _pressed: bool = inp_event.is_pressed() and inp_event.keycode != KEY_ESCAPE
+		if !inp_event.is_echo() and get_meta("Type") == "Tap" and _pressed:
+			var offset = abs(global_position.x - BaseLine_x_pos)
+			var score = abs(100 - offset)
+			ScoreManager.currentScore += score
+			queue_free()
+		elif (_pressed or inp_event.is_released()) and get_meta("Type") == "End":
+			ScoreManager.currentScore += 100
+		elif inp_event.is_released() and get_meta("Type") == "Tail":
+			ScoreManager.currentScore -= 100
+			queue_free()
 
 func _on_area_enter(area: Area2D):
 	if area.is_in_group("BaseLine"):
