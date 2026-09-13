@@ -1,16 +1,23 @@
 extends Area2D
 
 const SPEED = 10
-signal on_note_touch_baseline
 var _inp_event: InputEvent
 var _BaseLine_x_pos: float
+var _touching_baseline: bool = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	_inp_event = event
+	# Check judgement live on every input event instead of only on the single
+	# physics frame the overlap began — otherwise a keypress has to land on
+	# that exact frame or it's missed entirely.
+	if _touching_baseline:
+		_on_note_touch()
 
 func _ready() -> void:
-	on_note_touch_baseline.connect(_on_note_touch)
+	collision_layer = 2
+	collision_mask = 1
 	area_entered.connect(_on_area_enter)
+	area_exited.connect(_on_area_exit)
 	_BaseLine_x_pos = get_node("/root/GameScene/BaseLine").position.x
 
 func _physics_process(_delta: float) -> void:
@@ -37,4 +44,8 @@ func _on_note_touch():
 
 func _on_area_enter(area: Area2D):
 	if area.is_in_group("BaseLine"):
-		on_note_touch_baseline.emit()
+		_touching_baseline = true
+
+func _on_area_exit(area: Area2D):
+	if area.is_in_group("BaseLine"):
+		_touching_baseline = false
