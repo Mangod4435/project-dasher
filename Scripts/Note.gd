@@ -30,6 +30,11 @@ func _on_note_touch(_event: InputEvent):
 		var _released: bool = _event.is_released()
 		var _meta: String = get_meta("Type")
 		if !_event.is_echo() and _meta == "Tap" and _pressed:
+			# Head (the tap that kicks off a hold) lives under a "Hold" parent —
+			# remember which key started the hold so an unrelated key release
+			# later can't be mistaken for releasing this hold.
+			if get_parent().name == "Hold":
+				get_parent().set_meta("active_keycode", _event.keycode)
 			var offset = abs(global_position.x - _BaseLine_x_pos)
 			var score = abs(100 - offset)
 			ScoreManager.currentScore += score
@@ -38,6 +43,11 @@ func _on_note_touch(_event: InputEvent):
 			ScoreManager.currentScore += 100
 			queue_free()
 		elif _released and _meta == "Tail":
+			# Only the key that actually started the hold can end it — any other
+			# key's release event should be ignored, not scored as an early let-go.
+			var held_keycode: int = get_parent().get_meta("active_keycode", -1)
+			if _event.keycode != held_keycode:
+				return
 			# Tail's anchor sits at the same x as the hold's End tip, so this
 			# node's own global_position tells us how far off the release was.
 			# Positive offset = tip hasn't reached the baseline yet (early).
