@@ -1,6 +1,7 @@
 extends Area2D
 
 const SPEED = 10
+const HOLD_EARLY_TOLERANCE_MS = 120
 var _BaseLine_x_pos: float
 var _touching_baseline: bool = false
 
@@ -37,7 +38,18 @@ func _on_note_touch(_event: InputEvent):
 			ScoreManager.currentScore += 100
 			queue_free()
 		elif _released and _meta == "Tail":
-			ScoreManager.currentScore -= 100
+			# Tail's anchor sits at the same x as the hold's End tip, so this
+			# node's own global_position tells us how far off the release was.
+			# Positive offset = tip hasn't reached the baseline yet (early).
+			# Negative/zero offset = tip already passed the baseline (late) —
+			# that's fine, only early releases get penalized.
+			var pixels_per_ms = (SPEED * Engine.physics_ticks_per_second) / 1000.0
+			var early_tolerance_px = HOLD_EARLY_TOLERANCE_MS * pixels_per_ms
+			var early_offset = global_position.x - _BaseLine_x_pos
+			if early_offset > early_tolerance_px:
+				ScoreManager.currentScore -= 100
+			else:
+				ScoreManager.currentScore += 100
 			queue_free()
 
 func _on_area_enter(area: Area2D):
