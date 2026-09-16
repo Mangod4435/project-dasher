@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "required": [],
   "properties": {
@@ -6,7 +7,8 @@
       "type": "string"
     },
     "music": {
-      "type": "string"
+      "type": "string",
+      "$comment": "The files must be mp3 and paste the link(raw)"
     },
     "tempo": {
       "type": "number"
@@ -15,6 +17,7 @@
       "type": "number"
     },
     "notes": {
+      "minLength": 1,
       "type": "array",
       "items": {
         "type": "object",
@@ -24,13 +27,14 @@
             "type": "number"
           },
           "y": {
-            "type": "number"
+            "type": "number",
+            "enum": [0, 1, 2]
           },
           "species": {
             "type": "string"
           },
           "end": {
-            "type": "string"
+            "type": "number"
           }
         }
       }
