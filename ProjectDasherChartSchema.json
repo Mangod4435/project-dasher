@@ -1,43 +1,48 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "required": [],
-  "properties": {
-    "name": {
-      "type": "string"
-    },
-    "music": {
-      "type": "string",
-      "$comment": "The files must be mp3 and paste the link(raw)"
-    },
-    "tempo": {
-      "type": "number"
-    },
-    "delay": {
-      "type": "number"
-    },
-    "notes": {
-      "minLength": 1,
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [],
-        "properties": {
-          "beat": {
-            "type": "number"
-          },
-          "y": {
-            "type": "number",
-            "enum": [0, 1, 2]
-          },
-          "species": {
-            "type": "string"
-          },
-          "end": {
-            "type": "number"
-          }
-        }
-      }
-    }
-  }
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"required": [],
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"music": {
+			"type": "string",
+			"$comment": "The files must be mp3 and paste the link(raw)"
+		},
+		"tempo": {
+			"type": "number"
+		},
+		"delay": {
+			"type": "number"
+		},
+		"notes": {
+			"minLength": 1,
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [],
+				"properties": {
+					"beat": {
+						"type": "number",
+						"$comment": "Determine where's the note will spawn in horizontal"
+					},
+					"y": {
+						"type": "number",
+						"enum": [0, 1, 2],
+						"$comment": "Determine where's the note will spawn in vertical"
+					},
+					"species": {
+						"type": "string",
+						"enum": ["Norm"],
+						"$comment": "This is the type for the note"
+					},
+					"end": {
+						"type": "number",
+						"$comment": "Duration of the hold(this isn't required)"
+					}
+				}
+			}
+		}
+	}
 }

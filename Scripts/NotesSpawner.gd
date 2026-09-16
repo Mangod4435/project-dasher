@@ -7,20 +7,27 @@ func _ready() -> void:
 	var notes = this_chart.notes
 	var note_id: int = 0
 	for note in notes:
+		note_id += 1
+		
 		var templ := preload("res://Scenes/Note.tscn").instantiate() as Node2D
-		match int(note.species):
-			0:
-				if note.end == 0:
+		
+		match note.species:
+			"Norm":
+				if !note.has("end"):
+					_setup_tap(templ, note_id)
+				elif note.end == 0:
 					_setup_tap(templ, note_id)
 				else:
 					_setup_hold(templ, note.end, note_id)
-		note_id += 1
 		var output_pos = Vector2(one_beat * note["beat"] * 100, 0)
+
 		match int(note["y"]):
 			0: output_pos.y = 360
 			1: output_pos.y = 240
 			2: output_pos.y = 480
+
 		templ.position = output_pos
+
 		add_child(templ)
 
 func _setup_tap(templ: Node2D, id: int) -> void:
