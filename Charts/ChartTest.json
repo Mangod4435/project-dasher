@@ -6,31 +6,16 @@
 	"delay": 1.83,
 	"notes": [
 		{
-			"beat": 1,
-			"y": 1,
-			"species": "Norm"
-		},
-		{
-			"beat": 1,
+			"beat": 5,
 			"y": 2,
-			"species": "Norm"
-
-		},
-		{
-			"beat": 2,
-			"y": 0,
 			"species": "Norm",
-			"end": 2
+			"end": 3
 		},
 		{
-			"beat": 3,
+			"beat": 6,
 			"y": 1,
-			"species": "Norm"
-		},
-		{
-			"beat":4,
-			"y": 1,
-			"species": "Norm"
+			"species": "Norm",
+			"end": 3
 		}
 	]
 }
