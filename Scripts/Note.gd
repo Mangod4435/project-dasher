@@ -37,8 +37,10 @@ func _on_note_touch(_event: InputEvent):
 			ScoreManager.currentScore += 100
 			queue_free()
 		elif _released and _meta == "Tail":
-			var held_keycode: int = get_parent().get_meta("active_keycode", -1)
-			if _event.keycode != held_keycode:
+			# Only finalize this hold once ALL keys are released, not just
+			# whichever key originally started it — this lets other holds
+			# keep registering while a finger frees up mid-chord.
+			if InputState.is_any_key_held():
 				return
 			var pixels_per_ms = (SPEED * 100) / 1000.0
 			var early_tolerance_px = HOLD_EARLY_TOLERANCE_MS * pixels_per_ms
