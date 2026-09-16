@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "required": [],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "music": {
+      "type": "string"
+    },
+    "tempo": {
+      "type": "number"
+    },
+    "delay": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "beat": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "species": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
