@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cfqs8h26gtp4m" path="res://Sprites/PipisTrail.svg" id="3_6a4ne"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewwnu"]
-radius = 50.0
+radius = 100.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hg3a3"]
 size = Vector2(125, 100)

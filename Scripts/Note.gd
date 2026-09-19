@@ -26,7 +26,8 @@ func _ready() -> void:
 	_BaseLine_x_pos = get_node("/root/GameScene/BaseLine").position.x
 
 func _physics_process(_delta: float) -> void:
-	if global_position.x < 0:
+	if global_position.x < 0 and get_meta("Type") == "Tap" or get_meta("Type") == "Hold":
+		ScoreManager.currentScore -= 200
 		queue_free()
 	position.x -= SPEED
 
@@ -49,13 +50,13 @@ func _on_note_touch(_event: InputEvent):
 			if get_parent().name == "Hold":
 				get_parent().set_meta("active_keycode", _event.keycode)
 			var offset = abs(global_position.x - _BaseLine_x_pos)
-			var score = abs(100 - offset)
+			var score = abs(200 - offset)
 			ScoreManager.currentScore += score
 			queue_free()
 
 		# End condition
 		elif InputState.is_any_key_held() and _meta == "End":
-			ScoreManager.currentScore += 100
+			ScoreManager.currentScore += 200
 			queue_free()
 
 		# Tail condition
@@ -63,6 +64,6 @@ func _on_note_touch(_event: InputEvent):
 			if InputState.is_any_key_held():
 				return
 			var early_offset = global_position.x - _BaseLine_x_pos
-			if early_offset > EARLY_LIMIT_PX: ScoreManager.currentScore -= 100 # too early
-			else: ScoreManager.currentScore += 100 # just enough
+			if early_offset > EARLY_LIMIT_PX: ScoreManager.currentScore -= 200 # too early
+			else: ScoreManager.currentScore += 200 # just enough
 			queue_free()
