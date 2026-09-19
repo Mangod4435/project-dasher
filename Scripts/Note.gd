@@ -38,8 +38,14 @@ func _on_note_touch(_event: InputEvent):
 		var _released: bool = _event.is_released()
 		var _meta: String = get_meta("Type")
 
+		# DEBUG
+		if _pressed:
+			print("Pressed from %s" % name)
+		if _released:
+			print("Released from %s" % name)
+
 		# Tap condition
-		if !_event.is_echo() and _meta == "Tap" and _pressed:
+		if _pressed and !_event.is_echo() and _meta == "Tap":
 			if get_parent().name == "Hold":
 				get_parent().set_meta("active_keycode", _event.keycode)
 			var offset = abs(global_position.x - _BaseLine_x_pos)
@@ -48,12 +54,14 @@ func _on_note_touch(_event: InputEvent):
 			queue_free()
 
 		# End condition
-		elif (_pressed or _released) and _meta == "End":
+		elif InputState.is_any_key_held() and _meta == "End":
 			ScoreManager.currentScore += 100
 			queue_free()
 
 		# Tail condition
 		elif _released and _meta == "Tail":
+			if InputState.is_any_key_held():
+				return
 			var early_offset = global_position.x - _BaseLine_x_pos
 			if early_offset > EARLY_LIMIT_PX: ScoreManager.currentScore -= 100 # too early
 			else: ScoreManager.currentScore += 100 # just enough
