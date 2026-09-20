@@ -14,7 +14,7 @@ func _on_area_exit(area: Area2D):
 	if area.is_in_group("BaseLine"):
 		_touching_baseline = false
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if _touching_baseline:
 		_on_note_touch(event)
 
@@ -30,6 +30,11 @@ func _physics_process(_delta: float) -> void:
 		ScoreManager.currentScore -= 200
 		queue_free()
 	position.x -= SPEED
+	# End condition: check every frame while touching baseline, since holding
+	# a key steady produces no new input event for _on_note_touch to react to
+	if _touching_baseline and get_meta("Type") == "End" and InputState.is_any_key_held():
+		ScoreManager.currentScore += 200
+		queue_free()
 
 # custom signal
 func _on_note_touch(_event: InputEvent):
@@ -52,11 +57,6 @@ func _on_note_touch(_event: InputEvent):
 			var offset = abs(global_position.x - _BaseLine_x_pos)
 			var score = abs(200 - offset)
 			ScoreManager.currentScore += score
-			queue_free()
-
-		# End condition
-		elif InputState.is_any_key_held() and _meta == "End":
-			ScoreManager.currentScore += 200
 			queue_free()
 
 		# Tail condition
