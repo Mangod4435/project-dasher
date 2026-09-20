@@ -2,7 +2,7 @@ extends Area2D
 
 const SPEED = 10
 const EARLY_LIMIT_PX = 120
-var _BaseLine_x_pos: float
+const BASELINE_POS = 250.0
 var _touching_baseline: bool = false
 
 # signal
@@ -23,7 +23,6 @@ func _ready() -> void:
 	collision_mask = 1
 	area_entered.connect(_on_area_enter)
 	area_exited.connect(_on_area_exit)
-	_BaseLine_x_pos = get_node("/root/GameScene/BaseLine").position.x
 
 func _physics_process(_delta: float) -> void:
 	if global_position.x < 0 and get_meta("Type") == "Tap" or get_meta("Type") == "Hold":
@@ -44,17 +43,11 @@ func _on_note_touch(_event: InputEvent):
 		var _released: bool = _event.is_released()
 		var _meta: String = get_meta("Type")
 
-		# DEBUG
-		if _pressed:
-			print("Pressed from %s" % name)
-		if _released:
-			print("Released from %s" % name)
-
 		# Tap condition
 		if _pressed and !_event.is_echo() and _meta == "Tap":
 			if get_parent().name == "Hold":
 				get_parent().set_meta("active_keycode", _event.keycode)
-			var offset = abs(global_position.x - _BaseLine_x_pos)
+			var offset = abs(global_position.x - BASELINE_POS)
 			var score = abs(200 - offset)
 			ScoreManager.currentScore += score
 			queue_free()
@@ -63,7 +56,7 @@ func _on_note_touch(_event: InputEvent):
 		elif _released and _meta == "Tail":
 			if InputState.is_any_key_held():
 				return
-			var early_offset = global_position.x - _BaseLine_x_pos
+			var early_offset = global_position.x - BASELINE_POS
 			if early_offset > EARLY_LIMIT_PX: ScoreManager.currentScore -= 200 # too early
 			else: ScoreManager.currentScore += 200 # just enough
 			queue_free()
