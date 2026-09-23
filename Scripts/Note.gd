@@ -25,14 +25,14 @@ func _ready() -> void:
 	area_exited.connect(_on_area_exit)
 
 func _physics_process(_delta: float) -> void:
-	if global_position.x < 0 and get_meta("Type") == "Tap" or get_meta("Type") == "Hold":
-		ScoreManager.currentScore -= 200
+	if global_position.x < 0:
+		if !self.get_meta("is_hit"):
+			ScoreManager.currentScore -= 200
 		queue_free()
 	position.x -= SPEED
-	# End condition: check every frame while touching baseline, since holding
-	# a key steady produces no new input event for _on_note_touch to react to
 	if _touching_baseline and get_meta("Type") == "End" and InputState.is_any_key_held():
 		ScoreManager.currentScore += 200
+		set_meta("is_hit", true)
 		queue_free()
 
 # custom signal
@@ -60,3 +60,6 @@ func _on_note_touch(_event: InputEvent):
 			if early_offset > EARLY_LIMIT_PX: ScoreManager.currentScore -= 200 # too early
 			else: ScoreManager.currentScore += 200 # just enough
 			queue_free()
+		
+		# set metadata
+		set_meta("is_hit", true)

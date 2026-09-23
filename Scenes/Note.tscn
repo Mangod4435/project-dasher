@@ -19,6 +19,7 @@ b = Vector2(400, 0)
 position = Vector2(0, -50)
 script = ExtResource("1_pmjlu")
 metadata/Type = "Tap"
+metadata/is_hit = false
 
 [node name="Pipis" type="Sprite2D" parent="Tap" unique_id=827244956]
 scale = Vector2(0.25, 0.25)
@@ -34,6 +35,7 @@ position = Vector2(0, 50)
 position = Vector2(400, 0)
 script = ExtResource("1_pmjlu")
 metadata/Type = "End"
+metadata/is_hit = false
 
 [node name="EndCollision" type="CollisionShape2D" parent="Hold/End" unique_id=1929787691]
 shape = SubResource("RectangleShape2D_hg3a3")
@@ -42,6 +44,7 @@ shape = SubResource("RectangleShape2D_hg3a3")
 position = Vector2(400, 0)
 script = ExtResource("1_pmjlu")
 metadata/Type = "Tail"
+metadata/is_hit = false
 
 [node name="Tail" type="Sprite2D" parent="Hold/Tail" unique_id=182438650]
 position = Vector2(-200, 0)
@@ -55,6 +58,7 @@ shape = SubResource("SegmentShape2D_3arqs")
 [node name="Head" type="Area2D" parent="Hold" unique_id=1085827548 groups=["Notes"]]
 script = ExtResource("1_pmjlu")
 metadata/Type = "Tap"
+metadata/is_hit = false
 
 [node name="Pipis" type="Sprite2D" parent="Hold/Head" unique_id=1566794696]
 scale = Vector2(0.25, 0.25)
