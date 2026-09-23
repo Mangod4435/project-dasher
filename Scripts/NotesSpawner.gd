@@ -32,24 +32,26 @@ func _ready() -> void:
 
 func _setup_tap(templ: Node2D, id: int) -> void:
 	templ.name = "Note %s" % id
-	free_other_child(templ, "Tap")
+	free_unexcluded_child(templ, "Tap")
 	var _tap = templ.get_node("Tap") as Node2D
 	_tap.position = Vector2.ZERO
 
 func _setup_hold(templ: Node2D, end_beats: float, id: int) -> void:
 	templ.name = "Note Hold %s" % id
-	free_other_child(templ, "Hold")
-	var _hold = templ.get_node("Hold") as Node2D
-	_hold.position = Vector2.ZERO
+	free_unincluded_child(templ, ["Tail", "Head", "End"])
+	var _tail = templ.get_node("Tail") as Node2D
+	var _head = templ.get_node("Head") as Node2D
+	var _end = templ.get_node("End") as Node2D
 
-	var _tail_are = _hold.get_node("Tail") as Node2D
-	var _tail_spr = _hold.get_node("Tail/Tail") as Node2D
-	var _tail_col = _hold.get_node("Tail/TailCollision") as CollisionShape2D
-	var _end = _hold.get_node("End") as Node2D
+	_tail.position = Vector2.ZERO
+	_head.position = Vector2.ZERO
+	_end.position = Vector2.ZERO
+
+	var _tail_spr = _tail.get_node("Tail") as Node2D
+	var _tail_col = _tail.get_node("TailCollision") as CollisionShape2D
 
 	var length_px = one_beat * end_beats * 100
-
-	_tail_are.position.x = length_px # anchor the whole Tail node at the tip, same as End
+	_tail.position.x = length_px # anchor the whole Tail node at the tip, same as End
 	_tail_spr.position.x = - length_px / 2
 	_tail_spr.scale.x = length_px / 400
 	_tail_col.position.x = - length_px
@@ -57,7 +59,12 @@ func _setup_hold(templ: Node2D, end_beats: float, id: int) -> void:
 	_end.position.x = length_px
 
 # private helpers
-func free_other_child(parent: Node, except: String):
+func free_unexcluded_child(parent: Node, except: String):
 	for child in parent.get_children():
 		if child.name != except:
+			child.queue_free()
+
+func free_unincluded_child(parent: Node, except_arr: Array[String]):
+	for child in parent.get_children():
+		if child.name not in except_arr:
 			child.queue_free()
