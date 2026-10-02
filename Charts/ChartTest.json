@@ -1,5 +1,5 @@
 {
-	"$schema": "https://raw.githubusercontent.com/Mangod4435/project-dasher/main/ProjectDasherChartSchema.json",
+	"$schema": "https://raw.githubusercontent.com/Mangod4435/project-dasher/main/PJDSScheme.json",
 	"name": "placeholder",
 	"music": "res://Music/BIG-SHOT-DELTARUNE.mp3",
 	"tempo": 140.0,

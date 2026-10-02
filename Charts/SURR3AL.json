@@ -1,0 +1,12 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Mangod4435/project-dasher/main/PJDSScheme.json",
+    "tempo": 160,
+    "music": "res://Music/SURR3AL.mp3",
+    "notes": [
+        {
+            "beat": 12,
+            "species": "Norm",
+            "y": 0
+        }
+    ]
+}

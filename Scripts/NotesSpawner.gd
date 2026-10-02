@@ -1,6 +1,6 @@
 extends Node2D
 
-var this_chart = JSONReader.LoadJson("res://Charts/ChartTest.json")
+@export var this_chart = JSONReader.LoadJson("res://Charts/SURR3AL.json")
 var one_beat = 600 / this_chart.tempo
 
 func _ready() -> void:
